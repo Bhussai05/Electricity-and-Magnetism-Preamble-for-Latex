@@ -1,2 +1,2 @@
-# Electricity-and-Magnetism-Preamble-for-Latex
-As title says, contains some useful custom latex commands for electricity and magnetism at a university level 
+# Useful Preambles 
+As title says, contains some useful custom latex commands for note taking in latex at a university level 
