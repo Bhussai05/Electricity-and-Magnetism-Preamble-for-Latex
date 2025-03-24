@@ -1,0 +1,194 @@
+% E&M Physics LaTeX Preamble - Core Laws & Equations
+
+% Basic packages
+\usepackage{amsmath}    % Enhanced math environments
+\usepackage{amssymb}    % Additional math symbols
+\usepackage{mathtools}  % Extensions to amsmath
+\usepackage{physics}    % Physics notation (vectors, derivatives, etc.)
+\usepackage{siunitx}    % SI units formatting
+\usepackage{graphicx}   % For including figures
+\usepackage{float}      % Better figure placement control
+\usepackage{hyperref}   % Clickable references and links
+\usepackage{bm}         % Bold math symbols for vectors
+
+% Vector notation
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}  % Bold vectors
+\newcommand{\uvec}[1]{\hat{\mathbf{#1}}}         % Unit vectors
+
+% Common vectors and symbols
+\newcommand{\E}{\vec{E}}       % Electric field
+\newcommand{\B}{\vec{B}}       % Magnetic field
+\newcommand{\D}{\vec{D}}       % Electric displacement field
+\newcommand{\J}{\vec{J}}       % Current density
+\newcommand{\A}{\vec{A}}       % Vector potential
+\newcommand{\p}{\vec{p}}       % Dipole moment
+\newcommand{\Pv}{\vec{P}}      % Polarization
+\newcommand{\M}{\vec{M}}       % Magnetization
+\newcommand{\F}{\vec{F}}       % Force
+\newcommand{\eps}{\varepsilon_0}  % Vacuum permittivity
+\newcommand{\perm}{\mu_0}      % Vacuum permeability
+\newcommand{\pot}{\phi}        % Scalar potential
+
+
+
+
+% Integrals
+\newcommand{\volint}{\iiint}                      % Volume integral
+\newcommand{\surfint}{\oiint}                     % Closed surface integral
+\newcommand{\lineint}{\oint}                      % Closed line integral
+
+% ======= ELECTROSTATICS LAWS ======= %
+
+% Coulomb's Law
+\newcommand{\coulomblaw}{
+\F = \frac{1}{4\pi\eps}\frac{q_1 q_2}{r^2}\uvec{r}
+}
+
+% Electric field of a point charge
+\newcommand{\pointchargefield}{
+\E = \frac{1}{4\pi\eps}\frac{q}{r^2}\uvec{r}
+}
+
+% Gauss's Law
+\newcommand{\gausslaw}{
+\divg \E = \frac{\rho}{\eps}
+}
+
+% Integral form of Gauss's Law
+\newcommand{\gausslawint}{
+\surfint \E \cdot d\vec{a} = \frac{Q_{enc}}{\eps}
+}
+
+% Electric potential
+\newcommand{\electricpotential}{
+V = \frac{1}{4\pi\eps}\int \frac{\rho(\vec{r'})}{|\vec{r}-\vec{r'}|} d\tau'
+}
+
+% Relationship between potential and electric field
+\newcommand{\potentialfield}{
+\E = -\grad V
+}
+
+% Poisson's Equation
+\newcommand{\poisson}{
+\laplacian V = -\frac{\rho}{\eps}
+}
+
+% Laplace's Equation
+\newcommand{\laplace}{
+\laplacian V = 0
+}
+
+% Electric dipole moment
+\newcommand{\dipolemoment}{
+\p = q\vec{d}
+}
+
+% Electric field of a dipole (far field)
+\newcommand{\dipolefield}{
+\E = \frac{1}{4\pi\eps}\frac{3(\p \cdot \uvec{r})\uvec{r} - \p}{r^3}
+}
+
+% Energy density in electric field
+\newcommand{\electricenergy}{
+u_E = \frac{1}{2}\eps |\E|^2
+}
+
+% Dielectric materials relation
+\newcommand{\dielectric}{
+\D = \eps_0 \E + \Pv = \eps \E
+}
+
+% ======= MAGNETOSTATICS LAWS ======= %
+
+% Biot-Savart Law
+\newcommand{\biotsavart}{
+\B = \frac{\perm}{4\pi}\int \frac{I d\vec{l} \times \uvec{r}}{r^2}
+}
+
+% Magnetic field of a point charge
+\newcommand{\movingchargefield}{
+\B = \frac{\perm}{4\pi}\frac{q\vec{v}\times\uvec{r}}{r^2}
+}
+
+% Ampere's Law
+\newcommand{\amperelaw}{
+\curl \B = \perm \J
+}
+
+% Integral form of Ampere's Law
+\newcommand{\amperelawint}{
+\lineint \B \cdot d\vec{l} = \perm I_{enc}
+}
+
+% Magnetic vector potential
+\newcommand{\vectorpotential}{
+\A = \frac{\perm}{4\pi}\int \frac{\J(\vec{r'})}{|\vec{r}-\vec{r'}|} d\tau'
+}
+
+% Relationship between vector potential and magnetic field
+\newcommand{\potentialB}{
+\B = \curl \A
+}
+
+% Magnetic dipole moment
+\newcommand{\magneticdipolemoment}{
+\vec{m} = I\vec{a}
+}
+
+% Magnetic field of a dipole (far field)
+\newcommand{\magneticdipolefield}{
+\B = \frac{\perm}{4\pi}\frac{3(\vec{m} \cdot \uvec{r})\uvec{r} - \vec{m}}{r^3}
+}
+
+% Energy density in magnetic field
+\newcommand{\magneticenergy}{
+u_B = \frac{1}{2\perm}|\B|^2
+}
+
+% Magnetic materials relation
+\newcommand{\magnetic}{
+\B = \perm_0(\H + \M) = \perm \H
+}
+
+% Lorentz force law
+\newcommand{\lorentzforce}{
+\F = q(\E + \vec{v} \times \B)
+}
+
+% ======= MAXWELL'S EQUATIONS ======= %
+
+% Maxwell's equations (differential form)
+\newcommand{\maxwelldiff}{
+\begin{align}
+\divg \D &= \rho \\
+\divg \B &= 0 \\
+\curl \E &= -\frac{\partial \B}{\partial t} \\
+\curl \H &= \J + \frac{\partial \D}{\partial t}
+\end{align}
+}
+
+% Maxwell's equations (integral form)
+\newcommand{\maxwellint}{
+\begin{align}
+\surfint \D \cdot d\vec{a} &= Q_{enc} \\
+\surfint \B \cdot d\vec{a} &= 0 \\
+\lineint \E \cdot d\vec{l} &= -\frac{d}{dt}\int \B \cdot d\vec{a} \\
+\lineint \H \cdot d\vec{l} &= I_{enc} + \frac{d}{dt}\int \D \cdot d\vec{a}
+\end{align}
+}
+
+% Electromagnetic wave equation
+\newcommand{\waveequation}{
+\nabla^2 \E = \frac{1}{c^2}\frac{\partial^2 \E}{\partial t^2}
+}
+
+% Wave velocity in vacuum
+\newcommand{\wavespeed}{
+c = \frac{1}{\sqrt{\eps_0 \perm_0}}
+}
+
+% Poynting vector
+\newcommand{\poynting}{
+\vec{S} = \frac{1}{\perm_0}(\E \times \B)
+}
